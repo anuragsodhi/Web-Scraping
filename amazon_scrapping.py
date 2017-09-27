@@ -48,5 +48,5 @@ for keyword in search_keyword:
     final_list = list(zip(product,price,weight))
     df = pd.DataFrame(final_list)
     df.to_excel('output.xlsx', header=False, index=False)
-    print('Finished!')
+    print('Finished!!')
     
