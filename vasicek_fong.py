@@ -66,20 +66,3 @@ for i, maturity in enumerate(maturity_date):
     print(c)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-vf_discount_function(parameters,knots,t)
