@@ -32,18 +32,21 @@ for keyword in search_keyword:
     price =[]
     weight=[]        
     for link in links:
-        driver.get(link)
-        product.append(driver.find_element_by_id("productTitle").text)
         try:
-            price.append(driver.find_element_by_id("priceblock_ourprice").text)
+            driver.get(link)
+            product.append(driver.find_element_by_id("productTitle").text)
+            try:
+                price.append(driver.find_element_by_id("priceblock_ourprice").text)
+            except:
+                price.append(driver.find_element_by_id("priceblock_saleprice").text)
+            shp = driver.find_element_by_id("detail-bullets").text
+            if shp.find('Shipping Weight:') == -1:
+                weight.append('Shipping weight missing')
+            else:
+                weight.append(shp[shp.find('Shipping Weight:')+len('Shipping Weight:')+1:shp.find('(View shipping rates and policies)')-1])
+            print('done one of the links')
         except:
-            price.append(driver.find_element_by_id("priceblock_saleprice").text)
-        shp = driver.find_element_by_id("detail-bullets").text
-        if shp.find('Shipping Weight:') == -1:
-            weight.append('Shipping weight missing')
-        else:
-            weight.append(shp[shp.find('Shipping Weight:')+len('Shipping Weight:')+1:shp.find('(View shipping rates and policies)')-1])
-        print('done one of the links')
+            pass
     
     final_list = list(zip(product,price,weight))
     df = pd.DataFrame(final_list)
