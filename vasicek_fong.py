@@ -56,7 +56,6 @@ for i, maturity in enumerate(maturity_date):
     k =list(schedule)
     t=0
     pv=0
-    pv2=0
     for j in range(1,len(k)):
         t = t + (k[j] - k[j-1])/365
         df = vf_discount_function(parameters,knots,t)
